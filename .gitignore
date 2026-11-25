@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Secrets and local data
+.env
+*.db
+
+# OS and editor
+.DS_Store
+CLAUDE.md
+.claude/
+
+# Professor's handout, keep it local
+/*.docx
