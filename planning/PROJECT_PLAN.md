@@ -1,34 +1,14 @@
 # Project Plan: Online Student Attendance & Academic Monitoring System
 
-The guidelines ask us to "propose and document" the system. Code is not marked by itself, but the demo should show one working flow. Process model (4 marks) and planning (4 marks) are worth more than design (3 marks). So most of the effort goes into the models, the plan and the Git history. `/src` stays a small working piece of the system.
-
 **One scenario runs through everything:**
 Faculty submits attendance → attendance % recalculated → risk rule fires → student status changes → mentor notified.
 
-The same scenario is used for:
+The same scenario is used across:
 - the Level 2 data flow diagram (DFD)
 - the sequence diagram
-- the state transition
-- Student 3's code
+- the state transition diagram
+- the Flask implementation (`/src`)
 - the live demo
-
-## Who owns each stage
-
-**Bold** marks work the assigned role table did not give to anyone. We split it as follows.
-
-| Stage | Owner | Support |
-|---|---|---|
-| 1. Problem, scope, requirements | S1 | S4 |
-| 2. Process model | **S4** | S1 |
-| 3. WBS, Gantt chart, risks, board | S4 | all |
-| 4. Architecture, ER diagram, data dictionary | S2 | |
-| 4. DFDs | **S2** | S3 |
-| 4. Sequence diagram | **S1** | S3 |
-| 5. Repo setup | **S3** | |
-| 5. README, board | S4 | all commit |
-| 5. `/src`: attendance, marks, tests | S3 | S2 (schema) |
-| 6. Ethics table | **S1 + S4** | all |
-| 7. Report, slides, deployment doc | S4 | all |
 
 ## Stage 1: Problem and scope
 
@@ -55,11 +35,11 @@ The same scenario is used for:
 
 **Assumptions**
 - The 75% attendance minimum comes from university rules, so it is a setting that can be changed.
-- The internal-marks cutoff (default: below 40% of the maximum) is our team's choice and can also be changed.
+- The internal-marks cutoff (default: below 40% of the maximum) is a configurable default.
 - Each course section has one faculty member.
 - The college supplies the student lists.
 
-**Default risk rules** (stored in a RiskRule table that the HOD can edit)
+**Default risk rules** (stored in `risk_rules` so the HOD can edit them)
 
 | Condition | Status |
 |---|---|
@@ -92,20 +72,17 @@ The same scenario is used for:
 - **Performance:** saving attendance for a class of 60 takes under 2 seconds.
 - **Usability:** works on mobile; meets the basic WCAG 2.1 AA accessibility checks.
 - **Reliability:** daily backups; submitting the same form twice loses no data.
-- **Maintainability:** thresholds are stored as data, not in code; a new member can set up the project from the README in 10 minutes or less.
+- **Maintainability:** thresholds are stored as data, not in code; the project can be set up locally from the README in 10 minutes or less.
 
 ## Stage 2: Process model
 
-**Choice:** Agile Scrum with 2 short sprints, tracked on the Jira board.
+**Choice:** Agile Scrum with 2 short sprints.
 
 **Why it fits**
-- The deadline is short (19 to 27 Nov), so we need working pieces every few days, not one big delivery at the end.
-- The work splits cleanly into two halves. Sprint 1 is the documents and design, Sprint 2 is the build and testing.
-- Each sprint ends with a review and a short retro, so mistakes in the design get caught before coding starts.
-- The Jira board shows every task moving across the columns day by day. That is the tracking evidence the CCA marks.
-- We still write the SRS and the design up front, in Sprint 1, so nothing the guidelines ask for is skipped.
-
-**Why not Incremental:** we first planned Incremental with 5 increments over about 6 weeks. When the 27 Nov deadline was confirmed there was no room for 5 increments, so we moved to 2 Scrum sprints.
+- The timeline is short, so working pieces are delivered iteratively rather than in one big release at the end.
+- The work splits cleanly into two halves: Sprint 1 covers requirements and design, Sprint 2 covers build and testing.
+- Each sprint ends with a review and retrospective so design issues are caught before coding starts.
+- Writing the SRS and design up front in Sprint 1 keeps documentation thorough while still iterating rapidly in Sprint 2.
 
 **Sprints**
 
@@ -113,24 +90,22 @@ The same scenario is used for:
 |---|---|---|
 | Sprint 1 | 19 to 22 Nov | Requirements, design and plan done |
 | Sprint 2 | 23 to 26 Nov | Attendance and marks working, tested, report ready |
-| Submission | 27 Nov | Final check and submit |
-
-Each sprint has planning on day 1, short daily updates on WhatsApp, and a review plus retro on the last day.
+| Release | 27 Nov | Final check and submission |
 
 ## Stage 3: Plan
 
 **Work breakdown structure (WBS)**
 
-| ID | Work package | Owner | Sprint | Due | Depends on |
-|---|---|---|---|---|---|
-| 1 | Requirements: problem statement, actors, survey, SRS, use cases | S1 | 1 | 20 to 21 Nov | none |
-| 2 | Planning: process model, WBS, Gantt chart, risks, board | S4 | 1 | 20 to 21 Nov | none |
-| 3 | Design: ER diagram, architecture, DFDs, data dictionary | S2 | 1 | 21 to 22 Nov | 1 |
-| 4 | Sequence diagram and student status state diagram | S1 | 1 | 22 Nov | 3 |
-| 5 | Development: attendance (23 Nov), marks and risk rules (24 Nov) | S3 | 2 | 23 to 24 Nov | 3 |
-| 6 | Testing: tests and test case table | S3 | 2 | 25 Nov | 5 |
-| 7 | Ethics table and professional responsibility statement | S1, S4 | 2 | 24 Nov | 1 |
-| 8 | Report, slides, deployment doc, rehearsal | S4 (all) | 2 | 25 to 26 Nov | all |
+| ID | Work package | Sprint | Due | Depends on |
+|---|---|---|---|---|
+| 1 | Requirements: problem statement, actors, survey, SRS, use cases | 1 | 20 to 21 Nov | none |
+| 2 | Planning: process model, WBS, risks | 1 | 20 to 21 Nov | none |
+| 3 | Design: ER diagram, architecture, DFDs, data dictionary | 1 | 21 to 22 Nov | 1 |
+| 4 | Sequence diagram and student status state diagram | 1 | 22 Nov | 3 |
+| 5 | Development: attendance (23 Nov), marks and risk rules (24 Nov) | 2 | 23 to 24 Nov | 3 |
+| 6 | Testing: unit/functional tests and test case table | 2 | 25 Nov | 5 |
+| 7 | Ethics table and professional responsibility statement | 2 | 24 Nov | 1 |
+| 8 | Report, slides, deployment doc | 2 | 25 to 26 Nov | all |
 
 **Milestones**
 - **M1:** Requirements and plan done (20 to 21 Nov)
@@ -138,20 +113,18 @@ Each sprint has planning on day 1, short daily updates on WhatsApp, and a review
 - **M3:** Attendance module working (23 Nov)
 - **M4:** Marks and risk rules working (24 Nov)
 - **M5:** Testing done, report and slides final (26 Nov)
-- **M6:** Submission (27 Nov)
+- **M6:** Release (27 Nov)
 
 **Risks**
 
 | Risk | Mitigation |
 |---|---|
 | Scope creep (biometrics, ML) | Stick to the out-of-scope list |
-| Members busy or unavailable | Give every task a backup person, and use 27 Nov as the buffer day |
-| S3 overloaded as the only developer | S2 writes the database schema and sample data |
-| Diagrams don't match each other | Check DFD balancing at M2 |
-| Little Git experience, merge conflicts | One branch per feature; small pull requests (PRs) |
-| Real student data ends up in the repo | Use made-up data only; check `.gitignore` |
-| Threshold rules unclear | Make them settings and list them as assumptions |
-| Deployment fails on demo day | Run locally and keep a recorded backup video |
+| Diagrams don't match each other | Check DFD balancing and schema alignment at M2 |
+| Merge conflicts | One branch per feature; small pull requests |
+| Real student data ends up in the repo | Use synthetic data only; check `.gitignore` |
+| Threshold rules unclear | Store them in `risk_rules` and document defaults as assumptions |
+| Deployment fails on demo day | Run locally and keep a recorded backup |
 
 ## Stage 4: Design
 
@@ -202,7 +175,7 @@ The whole system is one process. It exchanges data with five external entities:
 - 4.3 Compare with the current status and update the flag
 - 4.4 Raise a status-change alert
 
-**Balancing:** Level 2 must have exactly the same inputs and outputs as process 4.0 at Level 1.
+**Balancing:** Level 2 has the same inputs and outputs as process 4.0 at Level 1.
 
 ### Data dictionary (key entries)
 - `attendance_entry = session_id + student_id + status`, where `status = [P|A|L]`
@@ -251,8 +224,8 @@ The whole system is one process. It exchanges data with five external entities:
 | Data | MySQL (SQLite during development) |
 | External | SMTP email |
 
-- **Why this stack:** we already know Python and SQL, and it is one simple stack with no build step.
-- **Deployment:** run Flask and MySQL on a laptop or a college lab server. Optionally use the free tier of Render or PythonAnywhere for the demo.
+- **Why this stack:** Python and SQL provide a simple, cohesive stack with no frontend build step.
+- **Deployment:** run Flask and MySQL on a laptop or lab server, or deploy on Render / PythonAnywhere.
 - **Scalability:** one department is easy to handle. To grow, add more app workers and a database index on `(student_id, course_id)`.
 - **Bottlenecks:**
   - A single database gets a burst of writes when many faculty submit at the end of a period.
@@ -266,28 +239,15 @@ User (role), Student, Faculty, Course, Section, Enrollment, ClassSession, Attend
 ## Stage 5: Repository
 
 **Folders**
-- `/requirements`: SRS, use cases, survey
-- `/planning`: WBS, Gantt chart, risks, board exports
-- `/diagrams`: `.drawio` source files and `.png` exports
-- `/src`: app code, tests and `seed_synthetic.sql` (made-up sample data)
-- `/report`
-- `/presentation`
+- `/requirements`: SRS, use cases, survey, sequence & state diagrams, ethics
+- `/planning`: project plan, WBS, risks
+- `/diagrams`: `.drawio` source files, `.png` exports, and `data_dictionary.md`
+- `/src`: app code, tests and `seed_synthetic.sql` (synthetic sample data)
+- `/report`: test cases and reports
+- `/presentation`: slides
 - `README.md`
 
-**Branches**
-- `main` is protected.
-- Work happens on branches such as `feature/srs`, `feature/dfd`, `feature/attendance`, `feature/marks` and `docs/report`.
-- Every pull request is reviewed by one other member before merging.
-- Commit messages reference the issue they close, for example "Closes #12".
-
-**Housekeeping:** keep `.env` out of Git and use made-up data only.
-
-**Task board: Jira Free**, linked to the repo with the free "GitHub for Atlassian" app.
-- Columns: Backlog / To Do / In Progress / Review / Done.
-- Every issue has an owner, priority and due date. Epics serve as milestones and the 2 sprints follow the plan above.
-- Put the Jira issue key in each commit and PR (e.g. `AAM-12 add attendance form`) so they appear on the Jira issue.
-- Invite the professor by email early and confirm they can open the board (Jira Free has no public link).
-- Backup: a public GitHub Project, which anyone can open from a URL.
+**Housekeeping:** keep `.env` out of Git and use synthetic data only.
 
 ## Stage 6: Ethics
 
@@ -301,29 +261,14 @@ User (role), Student, Faculty, Course, Section, Enrollment, ClassSession, Attend
 | Bias (medical leave, disability, sports duty) | Approved leave is not counted as absence; the mentor can override with a recorded reason |
 | Accessibility | Labelled forms, keyboard navigation, good contrast; works on low-end phones |
 | Data retention | Archive records after the course ends; daily backups |
-| Licensing and IP | Only MIT/BSD-licensed libraries (Flask, Bootstrap) and our own icons; cite every source; add a LICENSE file |
+| Licensing and IP | Only MIT/BSD-licensed libraries (Flask, Bootstrap); cite every source; include a LICENSE file |
 
-**Professional responsibility.** We collect only the data we need and keep it confidential. We state the system's limits clearly: the risk rules are fixed thresholds, not predictions, and the thresholds depend on university regulations. Every member understands the whole project and takes responsibility for it.
-
-## Stage 7: Demo (every member speaks)
-
-| Item | Speaker |
-|---|---|
-| Problem, users, scope | S1 |
-| Process model and why we chose it | S4 |
-| Task board: tasks, owners, milestones, status | S4 |
-| DFD Level 0 → 1 → 2 and balancing | S2 |
-| Live scenario: attendance submitted → student flagged → mentor intervenes → Resolved (explain the state transitions) | S3, with S1 narrating the sequence diagram |
-| Architecture, stack, deployment, bottlenecks | S2 |
-| GitHub: README, folders, commits, PRs | S3 |
-| Ethics table | S1 |
-
-**Contribution evidence:** commits per member, task-board assignees, and a contribution table in the report.
+**Professional responsibility.** Collect only the data needed and keep it confidential. State the system's limits clearly: the risk rules are fixed thresholds, not predictions, and the thresholds depend on university regulations.
 
 ## To verify
 - The 75% attendance rule: sources disagree on whether the UGC itself requires it. Many universities allow a 65–74% band to be condoned.
-- The 40% internal-marks cutoff: no standard source found. It is our own choice.
-- The details of the DPDP Act: not checked against the official text yet. Don't cite them as settled.
+- The 40% internal-marks cutoff: configurable default, no universal standard.
+- The details of the DPDP Act: not checked against the official text yet. Seek legal review before production use.
 
 ## Sources
 - [UGC attendance guidelines](https://bhattandjoshiassociates.com/ugc-guidelines-on-attendance-and-gujarat-universitys-policy/)

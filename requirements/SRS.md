@@ -5,7 +5,7 @@
 |---|---|
 | Document version | 1.0 |
 | Date | 22 November 2026 |
-| Author | S1 – Requirements & Analysis Lead |
+| Author | Lucky Dhawan |
 | Project | AAM – Attendance & Academic Monitor |
 | Status | Final (Sprint 1) |
 
@@ -88,7 +88,7 @@ Colleges currently track attendance in paper registers and internal marks in sep
 ### 2.2 Assumptions and Dependencies
 
 1. The 75 % minimum attendance threshold is a university rule and is stored as a configurable setting, not hard-coded.
-2. The 40 % internal-marks cutoff is the team's default and is also configurable.
+2. The 40 % internal-marks cutoff is a configurable default.
 3. Each course section is taught by exactly one faculty member.
 4. The college provides the initial student roster; the Admin imports it.
 5. An SMTP relay is available for email notifications.
@@ -114,7 +114,7 @@ Colleges currently track attendance in paper registers and internal marks in sep
 
 ## 3. Functional Requirements
 
-The requirements below trace directly to the DFD Level 1 processes (1.0 – 6.0) and data stores (D1 – D7) defined by S2.
+The requirements below trace directly to the DFD Level 1 processes (1.0 – 6.0) and data stores (D1 – D7) in the system design.
 
 ---
 
@@ -561,7 +561,7 @@ Every change to an `attendance_records` or `mark_entries` row is recorded in an 
 ### 4.4 Usability and Accessibility
 - All pages are responsive and usable on a mobile screen (minimum 360 px wide).
 - The system meets WCAG 2.1 Level AA for contrast ratios, keyboard navigation, and form labelling.
-- A new team member should be able to set up and run the project locally by following the README in 10 minutes or less.
+- Local setup from the README takes 10 minutes or less.
 
 ### 4.5 Reliability
 - Submitting the same attendance form twice (double-click / network retry) produces the same result — no duplicate records (idempotent upsert).
