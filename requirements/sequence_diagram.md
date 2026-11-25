@@ -1,9 +1,9 @@
 # Sequence Diagram: Faculty Submits Attendance
 ## Online Student Attendance & Academic Monitoring System
 
-**Author:** S1 – Requirements & Analysis Lead  
+**Author:** Lucky Dhawan  
 **Version:** 1.1 | **Date:** 25 November 2026  
-**Matches:** `src/schema.sql` (AAM-20) and `diagrams/data_dictionary.md` (AAM-24)  
+**Matches:** `src/schema.sql` and `diagrams/data_dictionary.md`  
 **Scenario:** The core scenario that runs through the DFD Level 2, state diagram, code, and live demo.
 
 ---
@@ -146,6 +146,6 @@ sequenceDiagram
 
 ## Notes for the Demo
 
-- This diagram covers **FR4, FR5, FR8, FR9, FR10, and FR15** in one flow using exact table and column names from `src/schema.sql` (AAM-20) and `diagrams/data_dictionary.md` (AAM-24).
-- During the live demo, S3 runs the code while S1 narrates using this diagram.
+- This diagram covers **FR4, FR5, FR8, FR9, FR10, and FR15** in one flow using exact table and column names from `src/schema.sql` and `diagrams/data_dictionary.md`.
+- During the live demo, the backend runs the attendance and risk flow while this diagram walks through each step.
 - The `"N newly flagged"` message on the success screen is the observable output of the whole pipeline.

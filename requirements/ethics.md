@@ -1,7 +1,7 @@
 # Ethics Table and Professional Responsibility Statement
 ## Online Student Attendance & Academic Monitoring System
 
-**Authors:** S1 (Requirements & Analysis) · S4 (Project Management)  
+**Author:** Lucky Dhawan  
 **Version:** 1.0 | **Date:** 22 November 2026
 
 ---
@@ -25,21 +25,10 @@
 
 ## Professional Responsibility Statement
 
-> Every member of the team understands the full project — not just their own section — and accepts shared responsibility for it.
-
 We collect only the data the system needs to function: attendance statuses, internal marks, risk flags, and the contact details required to deliver notifications. We do not collect location data, device information, or anything that is not directly relevant to academic monitoring.
 
-We acknowledge the limits of this system clearly. The risk rules are fixed numerical thresholds, not predictions about a student's future performance. A flag is a signal for a human mentor to investigate, not an automated judgment or penalty. The thresholds themselves depend on university regulations that may differ between institutions; the defaults we have chosen are configurable precisely because no single value is universally correct.
+We acknowledge the limits of this system clearly. The risk rules are fixed numerical thresholds, not predictions about a student's future performance. A flag is a signal for a human mentor to investigate, not an automated judgment or penalty. The thresholds themselves depend on university regulations that may differ between institutions; the defaults chosen are configurable precisely because no single value is universally correct.
 
 We have not verified every detail of the DPDP Act, 2023 against the official text; institutions deploying this system should seek legal advice before going live with real student data.
 
 The at-risk label is designed to trigger support, not punishment. We are responsible for ensuring that the system is used in that spirit, and we document that intent here so that future maintainers carry it forward.
-
-**All team members reviewed and agreed this statement on 22 November 2026.**
-
-| Member | Role |
-|---|---|
-| S1 | Requirements & Analysis Lead |
-| S2 | Design & Database |
-| S3 | Development & Testing |
-| S4 | Project Management & Documentation |

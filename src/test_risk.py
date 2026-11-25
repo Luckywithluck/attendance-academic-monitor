@@ -74,7 +74,7 @@ class RiskTest(unittest.TestCase):
         self.assertEqual(self.current(2, None), "AT_RISK")
 
     def test_warning_in_two_courses_is_at_risk(self):
-        # Swati's example: Meera is a Warning in CS501 (70%), make her a Warning in CS502 too
+        # Example: Meera is a Warning in CS501 (70%), make her a Warning in CS502 too
         for period, st in enumerate("PPA", 1):
             submit_attendance(self.db, 2, "2026-11-25", period, 2, {**ALL_P, 4: st}, now=T0)  # 2 of 3 = 66.67%
         self.assertEqual(self.current(4, 2), "WARNING")

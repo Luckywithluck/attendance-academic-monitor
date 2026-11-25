@@ -1,7 +1,7 @@
 # Student Status State Transition Diagram
 ## Online Student Attendance & Academic Monitoring System
 
-**Author:** S1 – Requirements & Analysis Lead  
+**Author:** Lucky Dhawan  
 **Version:** 1.0 | **Date:** 22 November 2026
 
 ---

@@ -1,4 +1,3 @@
 # Requirements
 
-The SRS, use cases and the survey go here.
-Owner: S1 (Requirements & Analysis).
+The SRS, use case diagram, survey, sequence diagram, state transition diagram, and ethics documentation go here.
