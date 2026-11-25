@@ -1,7 +1,6 @@
 -- =====================================================================
---  AAM-20 : Database schema (SQLite, for development)
+--  Database schema (SQLite, for development)
 --  Online Student Attendance & Academic Monitoring System
---  Owner: S2 (Design & Database)        Used by: S3 (/src code)
 --  Same tables and columns as schema_mysql.sql, the ER diagram and the
 --  data dictionary. MySQL version (production): schema_mysql.sql
 --

@@ -1,7 +1,6 @@
 # Data Dictionary – Online Student Attendance & Academic Monitoring System
 
-- **Jira:** AAM-24 · **Owner:** S2 (Design & Database) · **Stage 4 – Design**
-- **Matches:** ER diagram (AAM-20), `schema.sql`, DFD Level 0/1/2 (AAM-21/22/23)
+- **Matches:** ER diagram, `schema.sql`, DFD Level 0/1/2
 
 All names below are the same as the tables and columns in the ER diagram and `schema.sql`.
 
@@ -278,4 +277,4 @@ class_session     = session_id + section_id + session_date + period
 | 3 | test_pct < 40 | AT_RISK |
 | 4 | courses_below_cutoff ≥ 2 (e.g. Warning in 2 courses) | AT_RISK |
 
-The 75% minimum comes from university rules and the 40% marks cutoff is the team's choice. Both are stored as data so the HOD can change them.
+The 75% minimum comes from university rules and the 40% marks cutoff is a configurable default. Both are stored as data so the HOD can change them.

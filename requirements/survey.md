@@ -3,19 +3,18 @@
 
 | Field | Detail |
 |---|---|
-| Jira issue | **AAM-10** |
 | Document version | 1.0 |
 | Date | 25 November 2026 |
-| Author | S1 – Requirements & Analysis Lead |
+| Author | Lucky Dhawan |
 | Stage | Stage 1 – Requirements & Analysis |
 
 ---
 
 ## 1. Purpose of This Survey
 
-Before writing the SRS (`requirements/SRS.md`), we conducted a structured background and stakeholder survey covering three areas:
+Before writing the SRS (`requirements/SRS.md`), a structured background and stakeholder survey was conducted covering three areas:
 1. **Existing tools and literature** — how colleges currently track attendance, marks, and early academic risk, and where existing solutions fall short.
-2. **University attendance and privacy regulations** — what thresholds and consent rules our system must support as configurable policy.
+2. **University attendance and privacy regulations** — what thresholds and consent rules the system must support as configurable policy.
 3. **Stakeholder needs elicitation** — representative pain points and feature priorities across all five system roles (Admin, Faculty, Mentor, HOD, Student).
 
 > **Data note:** Consistent with the project's data-handling rule in `planning/PROJECT_PLAN.md`, no real student or faculty survey responses or personal data are stored in this repository. Section 4 summarises representative stakeholder pain points gathered during project scoping.
@@ -40,14 +39,14 @@ Before writing the SRS (`requirements/SRS.md`), we conducted a structured backgr
 |---|---|---|---|
 | **75 % minimum attendance** | UGC attendance guidelines; NIT Kurukshetra UG/PG regulations (2024–25) | Many Indian universities mandate 75 % attendance for end-semester exam eligibility, though sources differ on whether UGC itself enforces a uniform cutoff across all programmes. | Stored as a configurable `risk_rules` row rather than hardcoded (**FR14**). |
 | **65 % – 74.99 % condonation band** | Kerala University condonation policy | Universities commonly treat 65–74.99 % as a condonable band (e.g., medical/official duty) and `< 65 %` as below condonation limit. | Reflected in default rules: `WARNING` for `BETWEEN 65 AND 74.99`, `AT_RISK` for `< 65` (**FR9**). |
-| **40 % internal test cutoff** | Team academic assumption | No universal standard applies to internal test pass marks across all colleges; 40 % is a common institutional convention. | Made configurable in `risk_rules` (`test_pct < 40`, **FR14**) and explicitly documented as an assumption. |
+| **40 % internal test cutoff** | Configurable default | No universal standard applies to internal test pass marks across all colleges; 40 % is a common institutional convention. | Made configurable in `risk_rules` (`test_pct < 40`, **FR14**) and explicitly documented as an assumption. |
 | **Student data privacy & consent** | DPDP Act & EdTech compliance overview (`ksandk.com`) | Requires data minimisation, clear privacy notice, and consent before sharing personal data with third parties. *(Note: exact statutory clauses have not yet been verified against the official DPDP Act text; legal review is required before production deployment.)* | RBAC enforced server-side (**FR1**), students see only their own records (**FR12**), and `students.parent_consent` defaults to `0` (opt-in only). |
 
 ---
 
 ## 4. Stakeholder Requirements Survey (Representative Elicitation)
 
-During Sprint 1 scoping, we mapped the primary pain points and desired capabilities for each of the five active user roles:
+During Sprint 1 scoping, the primary pain points and desired capabilities were mapped for each of the five active user roles:
 
 | Role | Key Pain Points Identified | Top Requested Capabilities | Mapped Requirement(s) |
 |---|---|---|---|

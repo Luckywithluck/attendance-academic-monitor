@@ -3,11 +3,10 @@
 
 | Field | Detail |
 |---|---|
-| Jira issue | **AAM-12** |
 | Document version | 1.0 |
 | Date | 25 November 2026 |
-| Author | S1 – Requirements & Analysis Lead |
-| Matches | `requirements/SRS.md` (FR1 – FR15) and DFD Level 1 (AAM-22) |
+| Author | Lucky Dhawan |
+| Matches | `requirements/SRS.md` (FR1 – FR15) and DFD Level 1 |
 
 ---
 

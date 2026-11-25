@@ -1,11 +1,10 @@
 -- =====================================================================
---  AAM-20 : Database schema
+--  Database schema
 --  Online Student Attendance & Academic Monitoring System
 --  Database : MySQL 8.0.16+ (production). SQLite version for development: schema.sql
 --  Backend  : Flask + SQLAlchemy
---  Owner    : S2 (Design & Database)      Used by: S3 (/src)
 --
---  Entities (from the project plan, Stage 4):
+--  Entities (from Stage 4 design):
 --    User, Student, Faculty, Course, Section, Enrollment, ClassSession,
 --    AttendanceRecord, Assessment, MarkEntry, RiskRule, RiskFlag,
 --    Intervention, Notification, AuditLog
